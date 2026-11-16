@@ -1,0 +1,70 @@
+{
+  "name": "playwright-octane-reporter",
+  "version": "0.1.0",
+  "description": "Reporter do Playwright que publica testes, runs, status por step, log de falha e evidência (screenshot ou troca HTTP) no ALM Octane.",
+  "keywords": [
+    "playwright",
+    "reporter",
+    "octane",
+    "alm-octane",
+    "opentext",
+    "microfocus",
+    "gherkin",
+    "test-management"
+  ],
+  "license": "MIT",
+  "author": "Rubens Lobo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rubens1287/playwright-octane-reporter.git"
+  },
+  "homepage": "https://github.com/rubens1287/playwright-octane-reporter#readme",
+  "bugs": {
+    "url": "https://github.com/rubens1287/playwright-octane-reporter/issues"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "playwright-octane-reporter": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=20.12"
+  },
+  "scripts": {
+    "prebuild": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "prepublishOnly": "npm run typecheck && npm run build",
+    "test": "npm run build && node test/run.mjs"
+  },
+  "peerDependencies": {
+    "@playwright/test": ">=1.50.0",
+    "prettier": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "prettier": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "prettier": "^3.10.1",
+    "typescript": "^6.0.3"
+  }
+}
